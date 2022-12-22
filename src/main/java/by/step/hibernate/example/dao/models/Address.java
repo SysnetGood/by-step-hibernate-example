@@ -1,28 +1,26 @@
 package by.step.hibernate.example.dao.models;
 
 import javax.persistence.*;
-import java.util.List;
 
-@Entity (name = "address")
-@Table(name = "address")
+@Entity
+@Table (name = "user_address")
 public class Address {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column (name = "Address")
     private String address;
-
-    @Column (name = "address_index")
     private int address_index;
 
-    @Column (name = "user_id", insertable = false, updatable = false)
+    @Column (insertable = false, updatable = false)
     private int user_id;
 
     @ManyToOne (fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id",nullable = true)
+    @JoinColumn(name="user_id", nullable=false)
     private User user;
+
+    public Address () {}
 
     public Address(int id, String address, int address_index, int user_id) {
         this.id = id;
@@ -31,7 +29,13 @@ public class Address {
         this.user_id = user_id;
     }
 
-    public Address () {}
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public int getId() {
         return id;
@@ -63,14 +67,6 @@ public class Address {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     @Override

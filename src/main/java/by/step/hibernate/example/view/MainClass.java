@@ -10,35 +10,42 @@ import java.util.List;
 
 public class MainClass {
 
+    static UserService userService = new UserService();
+    static AddressService addressService = new AddressService();
+
+
     public static void main(String[] args) {
-        UserService userService = new UserService();
 
-        List<User> users = userService.getAllUsers();
-
-        users.forEach(user -> System.out.println(user.toString() + user.getAddresses().toString()));
-
-        AddressService addressService = new AddressService();
-
-        List<Address> addresses = addressService.getAllAddrese();
-
-        addresses.forEach(address -> System.out.println(address + address.getUser().toString()));
+        showTables ();
 
         User u = new User();
-        u.setLogin("Petrenko");
-        u.setPassword("gogogo");
 
-        Address a = new Address();
-        a.setAddress("Moskovsiy");
-        a.setAddress_index(1234);
-        a.setUser(u);
-
-        List <Address> ad = new ArrayList<>();
-        ad.add(a);
-
-        u.setAddresses(ad);
+        u.setLogin("Admin");
+        u.setPassword("Admi");
 
         userService.saveUser(u);
 
+        Address a = new Address();
+
+        a.setAddress("asdasdas");
+        a.setAddress_index(341231234);
+        a.setUser(u);
+
         addressService.saveAddress(a);
+
+        showTables ();
+    }
+
+    public static void showTables () {
+
+        List<User> users = userService.getAllUsers();
+
+        users.forEach(user -> System.out.println(user.toString()));
+
+
+
+        List<Address> addresses = addressService.getAllAddrese();
+
+        addresses.forEach(address -> System.out.println(address));
     }
 }
