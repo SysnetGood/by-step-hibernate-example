@@ -5,7 +5,6 @@ import by.step.hibernate.example.dao.models.User;
 import by.step.hibernate.example.service.AddressService;
 import by.step.hibernate.example.service.UserService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainClass {
@@ -20,15 +19,15 @@ public class MainClass {
 
         User u = new User();
 
-        u.setLogin("Admin");
-        u.setPassword("Admi");
+        u.setLogin("Vasya");
+        u.setPassword("Pupkin");
 
         userService.saveUser(u);
 
         Address a = new Address();
 
-        a.setAddress("asdasdas");
-        a.setAddress_index(341231234);
+        a.setAddress("Bilevo");
+        a.setAddress_index(12345);
         a.setUser(u);
 
         addressService.saveAddress(a);
